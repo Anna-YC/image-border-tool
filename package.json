@@ -1,0 +1,22 @@
+{
+  "name": "image-border-tool",
+  "version": "2.0.0",
+  "description": "纯前端图片边框工具 - 为截图添加边框、阴影、圆角效果",
+  "type": "module",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview"
+  },
+  "keywords": [
+    "image",
+    "border",
+    "shadow",
+    "corner",
+    "tool",
+    "vue",
+    "canvas"
+  ],
+  "author": "",
+  "license": "MIT"
+}
