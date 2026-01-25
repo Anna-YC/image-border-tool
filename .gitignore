@@ -1,5 +1,6 @@
 # 依赖
 node_modules/
+frontend/node_modules/
 
 # 构建产物
 frontend/dist/
@@ -7,12 +8,12 @@ frontend/dist/
 # 系统文件
 .DS_Store
 Thumbs.db
+*.swp
+*.swo
 
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
 
 # 日志
 npm-debug.log*
