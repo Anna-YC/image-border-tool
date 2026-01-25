@@ -175,7 +175,7 @@ function clearImage() {
 
 /* 预览模式 */
 .uploader-preview {
-  @apply relative w-full h-full group;
+  @apply relative w-full h-full;
 }
 
 .preview-image {
@@ -183,7 +183,11 @@ function clearImage() {
 }
 
 .preview-overlay {
-  @apply absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-3;
+  @apply absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 flex flex-col items-center justify-center gap-3;
+}
+
+.uploader-preview:hover .preview-overlay {
+  @apply opacity-100;
 }
 
 .remove-button,
