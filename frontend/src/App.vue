@@ -2,8 +2,8 @@
   <div class="app">
     <!-- 顶部标题栏 -->
     <header class="app-header">
-      <h1 class="app-title">图片边框工具</h1>
-      <span class="app-version">v1.0.0</span>
+      <h1 class="app-title">图片美化神器</h1>
+      <span class="app-version">v2.0.0</span>
     </header>
 
     <!-- 主内容区 -->

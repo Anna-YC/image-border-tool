@@ -1,7 +1,7 @@
 {
-  "name": "image-border-tool",
+  "name": "image-beautifier",
   "version": "2.0.0",
-  "description": "纯前端图片边框工具 - 为截图添加边框、阴影、圆角效果",
+  "description": "图片美化神器 - 纯前端图片美化工具，添加边框、阴影、圆角效果",
   "type": "module",
   "scripts": {
     "dev": "cd frontend && npm run dev",
