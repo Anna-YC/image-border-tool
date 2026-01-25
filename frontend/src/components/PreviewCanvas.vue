@@ -1,26 +1,41 @@
 <template>
   <div class="preview-container">
+    <!-- 预览头部 -->
     <div class="preview-header">
-      <h3 class="preview-title">预览</h3>
-      <span v-if="imageInfo.width" class="preview-info">
-        {{ imageInfo.width }} × {{ imageInfo.height }} px
-      </span>
+      <div class="header-left">
+        <div class="preview-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="preview-title">实时预览</h3>
+          <span v-if="imageInfo.width" class="preview-info">
+            {{ imageInfo.width }} × {{ imageInfo.height }} px
+          </span>
+        </div>
+      </div>
     </div>
 
+    <!-- 画布区域 -->
     <div class="preview-canvas-wrapper" ref="wrapperRef">
       <canvas ref="canvasRef"></canvas>
 
-      <div v-if="!imageData" class="preview-empty">
-        <svg class="preview-empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-          />
-        </svg>
-        <p>请先上传图片</p>
-      </div>
+      <!-- 空状态 -->
+      <Transition name="fade">
+        <div v-if="!imageData" class="preview-empty">
+          <div class="empty-state">
+            <div class="empty-icon-wrapper">
+              <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h4 class="empty-title">暂无图片</h4>
+            <p class="empty-description">请在左侧上传图片开始编辑</p>
+          </div>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
@@ -50,7 +65,7 @@ function initCanvas() {
   fabricCanvas = new fabric.Canvas(canvasRef.value, {
     width: wrapperRef.value?.clientWidth || 600,
     height: wrapperRef.value?.clientHeight || 500,
-    backgroundColor: '#f3f4f6',
+    backgroundColor: '#f8fafc',
     selection: false,
   });
 
@@ -63,7 +78,7 @@ async function loadImageToCanvas(dataUrl) {
 
   fabric.Image.fromURL(dataUrl, (img) => {
     fabricCanvas.clear();
-    fabricCanvas.setBackgroundColor('#f3f4f6', fabricCanvas.renderAll.bind(fabricCanvas));
+    fabricCanvas.setBackgroundColor('#f8fafc', fabricCanvas.renderAll.bind(fabricCanvas));
 
     // 缩放图片以适应画布
     const maxSize = Math.min(fabricCanvas.width, fabricCanvas.height) - 100;
@@ -245,7 +260,7 @@ watch(() => props.imageData, (newVal) => {
   } else {
     if (fabricCanvas) {
       fabricCanvas.clear();
-      fabricCanvas.setBackgroundColor('#f3f4f6');
+      fabricCanvas.setBackgroundColor('#f8fafc');
       fabricCanvas.renderAll();
     }
   }
@@ -267,38 +282,83 @@ onUnmounted(() => {
 
 <style scoped>
 .preview-container {
-  @apply flex flex-col h-full bg-gray-100 rounded-lg overflow-hidden;
+  @apply flex flex-col h-full bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden;
 }
 
+/* 预览头部 */
 .preview-header {
-  @apply flex items-center justify-between px-4 py-3 bg-white border-b border-gray-200;
+  @apply flex items-center justify-between px-5 py-4 border-b border-gray-100;
+}
+
+.header-left {
+  @apply flex items-center gap-3;
+}
+
+.preview-icon {
+  @apply w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center text-white shadow-lg;
+}
+
+.preview-icon svg {
+  @apply w-5 h-5;
 }
 
 .preview-title {
-  @apply text-sm font-medium text-gray-700;
+  @apply text-sm font-semibold text-gray-700;
 }
 
 .preview-info {
-  @apply text-xs text-gray-500;
+  @apply block text-xs text-gray-400 mt-0.5;
 }
 
+/* 画布区域 */
 .preview-canvas-wrapper {
-  @apply relative flex-1 flex items-center justify-center p-4 overflow-auto;
+  @apply relative flex-1 flex items-center justify-center p-6 overflow-hidden;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.03) 0%, rgba(236, 72, 153, 0.03) 100%);
 }
 
 .preview-canvas-wrapper canvas {
-  @apply max-w-full max-h-full shadow-lg;
+  @apply max-w-full max-h-full rounded-2xl shadow-2xl;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
 }
 
+/* 空状态 */
 .preview-empty {
-  @apply flex flex-col items-center justify-center text-gray-400;
+  @apply absolute inset-0 flex items-center justify-center p-8;
 }
 
-.preview-empty-icon {
-  @apply w-16 h-16 mb-2 text-gray-300;
+.empty-state {
+  @apply flex flex-col items-center justify-center text-center;
 }
 
-.preview-empty p {
-  @apply text-sm;
+.empty-icon-wrapper {
+  @apply relative mb-6;
+}
+
+.empty-icon {
+  @apply w-24 h-24 text-violet-200;
+}
+
+.empty-title {
+  @apply text-lg font-semibold text-gray-700 mb-2;
+}
+
+.empty-description {
+  @apply text-sm text-gray-400;
+}
+
+/* 动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
 }
 </style>
