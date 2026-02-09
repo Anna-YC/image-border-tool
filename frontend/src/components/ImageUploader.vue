@@ -132,15 +132,15 @@ function clearImage() {
 
 /* 占位内容 */
 .uploader-placeholder {
-  @apply flex flex-col items-center justify-center h-full px-6;
+  @apply flex flex-col items-center justify-center h-full px-10 py-6;
 }
 
 .upload-icon-wrapper {
-  @apply relative mb-4;
+  @apply relative mb-6;
 }
 
 .upload-icon {
-  @apply w-16 h-16 text-violet-400 transition-transform duration-300;
+  @apply w-14 h-14 text-violet-400 transition-transform duration-300;
 }
 
 .uploader:hover .upload-icon {
@@ -158,19 +158,19 @@ function clearImage() {
 }
 
 .uploader-text {
-  @apply text-base font-semibold text-gray-700 mb-1;
+  @apply text-base font-semibold text-gray-700 mb-2;
 }
 
 .uploader-or {
-  @apply text-sm text-gray-400 my-3;
+  @apply text-sm text-gray-400 my-4;
 }
 
 .upload-button {
-  @apply px-6 py-2.5 bg-gradient-to-r from-violet-500 to-pink-500 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
+  @apply px-8 py-3 bg-gradient-to-r from-violet-500 to-pink-500 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
 }
 
 .uploader-hint {
-  @apply text-xs text-gray-400 mt-4;
+  @apply text-xs text-gray-400 mt-5;
 }
 
 /* 预览模式 */
