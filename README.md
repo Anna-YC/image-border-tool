@@ -6,7 +6,7 @@
 
 ## 🚀 在线使用
 
-访问：**https://anna-yc.github.io/image-border-tool/**
+访问：**https://anna-yc.github.io/WaytoAGI-Vibe-Coding/**
 
 ## ✨ 功能特性
 
