@@ -6,7 +6,7 @@
 
 ## 🚀 在线使用
 
-访问：**https://anna-yc.github.io/WaytoAGI-Demo/**
+访问：**https://anna-yc.github.io/image-border-tool/**
 
 ## ✨ 功能特性
 
@@ -22,8 +22,8 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/Anna-YC/WaytoAGI-Demo.git
-cd WaytoAGI-Demo
+git clone https://github.com/Anna-YC/image-border-tool.git
+cd image-border-tool
 
 # 安装依赖
 cd frontend
@@ -63,7 +63,7 @@ npm run preview
 ## 📁 项目结构
 
 ```
-WaytoAGI-Demo/
+image-border-tool/
 ├── frontend/              # 前端应用
 │   ├── src/
 │   │   ├── components/   # Vue 组件
